@@ -3,6 +3,7 @@ localStorage.setItem("reload", 'certifica');
 
 var m = 1; var b = 1;
 function welcome(){
+  var t = setTimeout(function(){
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -32,6 +33,7 @@ function welcome(){
   };
   xmlhttp.open("GET", "https://didigitales.tigersoftware.net.ve/certifica-lista", true);
   xmlhttp.send();
+  },2000);
 }
 $('#Menu').on('click', function(){
   if(m == 1){
@@ -54,6 +56,7 @@ $('#Back').on('click', function(){
   }
 });
 $('#Reload').on('click', function(){
+  navigator.vibrate(2000);
     var v = localStorage.getItem('reload');
     if (v == 'certifica') {
       certifica();
@@ -62,6 +65,7 @@ $('#Reload').on('click', function(){
     }
 });
 $('#Certifica').on('click', function(){
+  navigator.vibrate(2000);
   $('#Titulo').text('Certificaciones');
   b = 0;
   $('#M-left').animate({left:'-80%'},'show');
@@ -74,6 +78,7 @@ $('#Certifica').on('click', function(){
   }
 });
 $('#Inventario').on('click', function(){
+  navigator.vibrate(2000);
   $('#Titulo').text('Inventario');
   b = 0;
   $('#M-left').animate({left:'-80%'},'show');
