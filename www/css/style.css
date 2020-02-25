@@ -7,7 +7,9 @@
   height: 60px;
   background-color: #FFDF18;
 }
-
+.primarios{
+  background-color: #FFDF18;
+}
 .btn-search{
     z-index: 10;
     position: fixed;
@@ -218,7 +220,6 @@ li:active{
   height: 20px;
   margin-top: 10px;
   margin-left: 2.5%;
-  background: red;
   float: left;
 }
 .icon-vin{
@@ -243,5 +244,72 @@ a{
   padding: 15px;
   background-color: #eee;
   border: 1px solid #ccc;
+  text-align: center;
+}
+
+/* Estatus */
+.cd-status-pr{
+  z-index: 20;
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+.flex-center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.position-ref {
+    position: relative;
+}
+.full-height {
+    height: 80vh;
+}
+.cd-status{
+  position: fixed;
+  width: 100%;
+  height: 50px;
+  bottom: 0px;
+  left: 0px;
+}
+.icon-ind{
+  width: 30px;
+  height: 30px;
+  background: url('../img/alertas.png');
+  background-size: 30px 30px;
+}
+.icon-pfrs{
+  display: block;
+  margin: auto;
+  width: 128px;
+  height: 128px;
+  background: url('../img/icologo.ico');
+  background-size: 128px 128px;
+}
+.txt-msj{
+  display: block;
+  float: left;
+  margin-top: 13px;
+  margin-left: 2.5%;
+  font-weight: bold;
+  color: white;
+}
+.txt-msj-p{
+  display: block;
+  margin: auto;
+  width: 100%;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-top: -170px;
+}
+.txt-msj-p2{
+  display: block;
+  margin: auto;
+  width: 100%;
+  font-weight: bold;
+  color: #333;
   text-align: center;
 }

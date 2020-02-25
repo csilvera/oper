@@ -3,12 +3,15 @@ localStorage.setItem("reload", 'certifica');
 
 var m = 1; var b = 1;
 function welcome(){
+  if (navigator.onLine) {
+  scroll();
   var t = setTimeout(function(){
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       cr = JSON.parse(this.responseText);
   	  //console.log(cr);
+      localStorage.setItem("rcertifica", cr);
   	  let cer = $("#Content");
       $("#Content").empty();
       if(cr == 0){
@@ -33,7 +36,40 @@ function welcome(){
   };
   xmlhttp.open("GET", "https://didigitales.tigersoftware.net.ve/certifica-lista", true);
   xmlhttp.send();
-  },2000);
+  },4000);
+  }
+  else{
+    scroll();
+    cr = localStorage.getItem('rcertifica');
+    $('#Status').empty();
+    $('#Status').append(`
+    <div class="cd-status bg-primary">
+      <i class="icon icon-ind"></i>
+      <div class="txt-msj">
+        Verifica tu conexión
+      </div>
+    </div>`);
+    let cer = $("#Content");
+    $("#Content").empty();
+    if(cr == 0){
+            cer.html();
+            cer.append(`<div class="lista-inf">No hay resultados</div>`)
+    }else{
+            cer.html();
+            cr.forEach(cert => {
+                cer.append(`
+                        <tr class="list-b">
+                          <td>
+                            <div>${cert.descripcion}</div>
+                            <div class="c-fech">${cert.taladro} - ${cert.desde} - ${cert.hasta}</div>
+                            <td>
+                        </tr>
+
+                      `);
+            });
+
+          }
+  }
 }
 $('#Menu').on('click', function(){
   if(m == 1){
@@ -164,12 +200,13 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function(){
         document.addEventListener('deviceready', this.onDeviceReady, false);
+        document.addEventListener("backbutton", onBackKeyDown, false);
+        document.addEventListener("menubutton", onMenuKeyDown, false);
     },
     onDeviceReady: function(){
         checkConnection();
         welcome();
-        document.addEventListener("backbutton", onBackKeyDown, false);
-        document.addEventListener("menubutton", onMenuKeyDown, false);
+
     }
 };
 app.initialize();
@@ -182,4 +219,100 @@ function onBackKeyDown() {
 function onMenuKeyDown() {
   m = 0;
   $('#M-left').animate({left:'0%'},'show');
+}
+
+function scroll(){
+    var x = '';
+    var px = 700;
+    var d = 1;
+    var h = 25;
+    var no = 1;
+    $(window).scroll(function(event){
+        var posi = $(window).scrollTop();
+        if(posi >= px){
+            px = px + 700;
+            var desde = h * d;
+            d = d + 1;
+            var xmlhttp = new XMLHttpRequest()
+            xmlhttp.onreadystatechange = function(){
+              if (this.readyState == 4 && this.status == 200) {
+                var t2 = setTimeout(function(){
+                  $('#Status').empty();
+                },3000);
+                cr = JSON.parse(this.responseText);
+                localStorage.setItem("rcertifica", cr);
+            	  console.log('cargando scroll: '+cr);
+            	  let cer = $("#Content");
+                if(cr == 0){
+                        cer.html();
+                        cer.append(`<div class="lista-inf">No hay resultados</div>`)
+                }
+                else{
+                        cer.html();
+                        cr.forEach(cert => {
+                            cer.append(`
+                          					<tr class="list-b">
+                          						<td>
+                          							<div>${cert.descripcion}</div>
+                          							<div class="c-fech">${cert.taladro} - ${cert.desde} - ${cert.hasta}</div>
+                          							<td>
+                          					</tr>
+
+                          				`);
+                        });
+
+                      }
+              }
+            };
+            xmlhttp.open("GET", "https://didigitales.tigersoftware.net.ve/cert-m/"+desde, true);
+            xmlhttp.send();
+        }
+    });
+}
+function scrollinv(){
+    var x = '';
+    var px = 700;
+    var d = 1;
+    var h = 25;
+    var no = 1;
+    $(window).scroll(function(event){
+        var posi = $(window).scrollTop();
+        if(posi >= px){
+            px = px + 700;
+            var desde = h * d;
+            d = d + 1;
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function(){
+              if (this.readyState == 4 && this.status == 200) {
+                var t2 = setTimeout(function(){
+                  $('#Status').empty();
+                },3000);
+                cr = JSON.parse(this.responseText);
+                localStorage.setItem("rcertifica", cr);
+            	  //console.log(cr);
+            	  let cer = $("#Content");
+                if(cr == 0){
+                        cer.html();
+                        cer.append(`<div class="lista-inf">No hay resultados</div>`)
+                }else{
+                        cer.html();
+                        cr.forEach(cert => {
+                            cer.append(`
+                          					<tr class="list-b">
+                          						<td>
+                          							<div>${cert.descripcion}</div>
+                          							<div class="c-fech">${cert.taladro} - ${cert.desde} - ${cert.hasta}</div>
+                          							<td>
+                          					</tr>
+
+                          				`);
+                        });
+
+                      }
+              }
+            };
+            xmlhttp.open("GET", "https://didigitales.tigersoftware.net.ve/invent-m/"+desde, true);
+            xmlhttp.send();
+        }
+    });
 }
