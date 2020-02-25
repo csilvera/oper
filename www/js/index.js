@@ -36,7 +36,7 @@ function welcome(){
   };
   xmlhttp.open("GET", "https://didigitales.tigersoftware.net.ve/certifica-lista", true);
   xmlhttp.send();
-  },4000);
+},2000);
   }
   else{
     scroll();
@@ -128,10 +128,20 @@ $('#Inventario').on('click', function(){
 });
 
 function certifica(){
+  if (navigator.onLine) {
   var xmlhttp = new XMLHttpRequest();
+  $('#Status').empty();
+  $('#Status').append(`
+  <div class="cd-status bg-primary">
+    <i class="icon icon-ind"></i>
+    <div class="txt-msj">
+      Cargando. espere...
+    </div>
+  </div>`);
   xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       cr = JSON.parse(this.responseText);
+      localStorage.setItem("rcertifica", cr);
   	  //console.log(cr);
   	  let cer = $("#Content");
       $("#Content").empty();
@@ -157,9 +167,52 @@ function certifica(){
   };
   xmlhttp.open("GET", "https://didigitales.tigersoftware.net.ve/certifica-lista", true);
   xmlhttp.send();
+  }
+  else{
+    scroll();
+    cr = localStorage.getItem('rcertifica');
+    $('#Status').empty();
+    $('#Status').append(`
+    <div class="cd-status bg-primary">
+      <i class="icon icon-ind"></i>
+      <div class="txt-msj">
+        Verifica tu conexión
+      </div>
+    </div>`);
+    let cer = $("#Content");
+    $("#Content").empty();
+    if(cr == 0){
+            cer.html();
+            cer.append(`<div class="lista-inf">No hay resultados</div>`)
+    }else{
+            cer.html();
+            cr.forEach(cert => {
+                cer.append(`
+                        <tr class="list-b">
+                          <td>
+                            <div>${cert.descripcion}</div>
+                            <div class="c-fech">${cert.taladro} - ${cert.desde} - ${cert.hasta}</div>
+                            <td>
+                        </tr>
+
+                      `);
+            });
+
+          }
+  }
 }
 
 function inventario(){
+  if (navigator.onLine) {
+  scrollinv();
+  $('#Status').empty();
+  $('#Status').append(`
+  <div class="cd-status bg-primary">
+    <i class="icon icon-ind"></i>
+    <div class="txt-msj">
+      Cargando. espere...
+    </div>
+  </div>`);
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -190,6 +243,39 @@ function inventario(){
   };
   xmlhttp.open("GET", "https://didigitales.tigersoftware.net.ve/inventario-lista", true);
   xmlhttp.send();
+
+  }else{
+    scroll();
+    cr = localStorage.getItem('rcertifica');
+    $('#Status').empty();
+    $('#Status').append(`
+    <div class="cd-status bg-primary">
+      <i class="icon icon-ind"></i>
+      <div class="txt-msj">
+        Verifica tu conexión
+      </div>
+    </div>`);
+    let cer = $("#Content");
+    $("#Content").empty();
+    if(cr == 0){
+            cer.html();
+            cer.append(`<div class="lista-inf">No hay resultados</div>`)
+    }else{
+            cer.html();
+            cr.forEach(cert => {
+                cer.append(`
+                        <tr class="list-b">
+                          <td>
+                            <div>${cert.descripcion}</div>
+                            <div class="c-fech">${cert.taladro} - ${cert.desde} - ${cert.hasta}</div>
+                            <td>
+                        </tr>
+
+                      `);
+            });
+
+          }
+  }
 }
 
 var app = {
