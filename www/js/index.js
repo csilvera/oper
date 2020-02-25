@@ -309,14 +309,14 @@ function onMenuKeyDown() {
 
 function scroll(){
     var x = '';
-    var px = 700;
+    var px = 600;
     var d = 1;
-    var h = 25;
+    var h = 30;
     var no = 1;
     $(window).scroll(function(event){
         var posi = $(window).scrollTop();
         if(posi >= px){
-            px = px + 700;
+            px = px + 600;
             var desde = h * d;
             d = d + 1;
             var xmlhttp = new XMLHttpRequest()
