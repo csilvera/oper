@@ -72,6 +72,7 @@ function welcome(){
   }
 }
 $('#Menu').on('click', function(){
+  navigator.vibrate(500);
   if(m == 1){
       m = 0;
       $('#M-left').animate({left:'0%'},'show');
@@ -82,6 +83,7 @@ $('#Menu').on('click', function(){
   }
 });
 $('#Back').on('click', function(){
+  navigator.vibrate(500);
   if(b == 1){
       b = 0;
       $('#M-left').animate({left:'-80%'},'show');
@@ -92,7 +94,7 @@ $('#Back').on('click', function(){
   }
 });
 $('#Reload').on('click', function(){
-  navigator.vibrate(2000);
+  navigator.vibrate(500);
     var v = localStorage.getItem('reload');
     if (v == 'certifica') {
       certifica();
@@ -101,7 +103,7 @@ $('#Reload').on('click', function(){
     }
 });
 $('#Certifica').on('click', function(){
-  navigator.vibrate(2000);
+  navigator.vibrate(500);
   $('#Titulo').text('Certificaciones');
   b = 0;
   $('#M-left').animate({left:'-80%'},'show');
@@ -114,7 +116,7 @@ $('#Certifica').on('click', function(){
   }
 });
 $('#Inventario').on('click', function(){
-  navigator.vibrate(2000);
+  navigator.vibrate(500);
   $('#Titulo').text('Inventario');
   b = 0;
   $('#M-left').animate({left:'-80%'},'show');
