@@ -140,6 +140,9 @@ function certifica(){
   </div>`);
   xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
+      var t2 = setTimeout(function(){
+        $('#Status').empty();
+      },3000);
       cr = JSON.parse(this.responseText);
       localStorage.setItem("rcertifica", cr);
   	  //console.log(cr);
@@ -216,6 +219,9 @@ function inventario(){
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
+      var t2 = setTimeout(function(){
+        $('#Status').empty();
+      },3000);
       ins = JSON.parse(this.responseText);
   	  //console.log(ins);
   	  let inv = $("#Content");
