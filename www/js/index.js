@@ -3,8 +3,8 @@ localStorage.setItem("reload", 'certifica');
 
 var m = 1; var b = 1;
 function welcome(){
-  if (navigator.onLine) {
-  scroll();
+  if (navigator.online) {
+  //scroll();
   
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function() {
@@ -40,9 +40,9 @@ function welcome(){
 
   }
   else{
-    scroll();
+    //scroll();
 	 
-    cr = localStorage.getItem('rcertifica');
+   var cr = localStorage.getItem('rcertifica');
 	 console.log('cargado sin conexion:'+cr);
     $('#Status').empty();
     $('#Status').append(`
@@ -181,8 +181,8 @@ function certifica(){
   xmlhttp.send();
   }
   else{
-    scroll();
-    cr = localStorage.getItem('rcertifica');
+    //scroll();
+    var cr = localStorage.getItem('rcertifica');
     $('#Status').empty();
     $('#Status').append(`
     <div class="cd-status bg-primary">
