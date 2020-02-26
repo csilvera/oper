@@ -42,7 +42,7 @@ function welcome(){
   else{
     //scroll();
 	 
-   var cr = localStorage.getItem('rcertifica');
+   cr = localStorage.getItem('rcertifica');
 	 console.log('cargado sin conexion:'+cr);
     $('#Status').empty();
     $('#Status').append(`
@@ -182,7 +182,7 @@ function certifica(){
   }
   else{
     //scroll();
-    var cr = localStorage.getItem('rcertifica');
+     cr = localStorage.getItem('rcertifica');
     $('#Status').empty();
     $('#Status').append(`
     <div class="cd-status bg-primary">
