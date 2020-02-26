@@ -216,7 +216,7 @@ function certifica(){
 
 function inventario(){
   if (navigator.onLine) {
-  scrollinv();
+  //scrollinv();
   $('#Status').empty();
   $('#Status').append(`
   <div class="cd-status bg-primary">
@@ -260,7 +260,7 @@ function inventario(){
   xmlhttp.send();
 
   }else{
-    scroll();
+    
     cr = localStorage.getItem('rcertifica');
     $('#Status').empty();
     $('#Status').append(`
@@ -280,11 +280,12 @@ function inventario(){
             cr.forEach(cert => {
                 cer.append(`
                         <tr class="list-b">
-                          <td>
-                            <div>${cert.descripcion}</div>
-                            <div class="c-fech">${cert.taladro} - ${cert.desde} - ${cert.hasta}</div>
-                            <td>
-                        </tr>
+            							<td>
+            							<div class="txt-mat">${cert.descripcion}</div>
+            							<div class="st-m">${cert.stock}</div>
+            							<div class="ce-fech">${cert.codigo}</div>
+            							<td>
+            						  	</tr>
 
                       `);
             });
@@ -319,30 +320,52 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function(){
         document.addEventListener('deviceready', this.onDeviceReady, false);
-        document.addEventListener("backbutton", onBackKeyDown, false);
-        document.addEventListener("menubutton", onMenuKeyDown, false);
 		welcome();
+		android();
     },
     onDeviceReady: function(){
 		checkConnection();
-        
+        document.addEventListener("backbutton", onBackKeyDown, false);
+        document.addEventListener("menubutton", onMenuKeyDown, false);
 
     }
 };
 //app.initialize();
+function android(){
+	 var android = device.platform;
+    if(android == 'Android'){
+        cordova.plugins.notification.local.hasPermission(function (granted) {
+            console.log('Permission has been granted: ' + granted);
+        });
+        cordova.plugins.notification.local.registerPermission(function (granted) {
+            console.log('Register Permission has been granted: ' + granted);
+        });
+        cordova.plugins.notification.local.schedule(toast, callback, scope, { skipPermission: true });
+    }
+       
+}
 function onBackKeyDown() {
   navigator.notification.confirm(
     'Desea salir de la aplicacion!', // message
      onConfirm,            // callback to invoke with index of button pressed
-    'Game Over',           // title
-    ['salir','Cancelar']     // buttonLabels
+    'Perforosven operaciones',           // title
+    ['Aceptar','Cancelar']     // buttonLabels
 );
+}
+function onConfirm(data) {
+
+    if(data == 1){
+       navigator.app.exitApp();
+    }
+    else{
+        Acceder();
+    }
 }
 function onMenuKeyDown() {
   m = 0;
   $('#M-left').animate({left:'0%'},'show');
 }
-
+/*
 function scroll(){
     var x = '';
     var px = 400;
@@ -439,4 +462,4 @@ function scrollinv(){
             xmlhttp.send();
         }
     });
-}
+}*/
