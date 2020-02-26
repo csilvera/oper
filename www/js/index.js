@@ -64,6 +64,9 @@ $('#Inventario').on('click', function(){
 });
 
 function certifica(){
+  android();
+  document.addEventListener("backbutton", onBackKeyDown, false);
+  document.addEventListener("menubutton", onMenuKeyDown, false);
   if (navigator.onLine) {
   var xmlhttp = new XMLHttpRequest();
   $('#Status').empty();
@@ -243,14 +246,11 @@ var app = {
        this.bindEvents();
     },
     bindEvents: function(){
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-		certifica();
-		android();
+        document.addEventListener('deviceready', this.certifica, false);
+		
     },
     onDeviceReady: function(){
 		checkConnection();
-        document.addEventListener("backbutton", onBackKeyDown, false);
-        document.addEventListener("menubutton", onMenuKeyDown, false);
 
     }
 };
