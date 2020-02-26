@@ -6,7 +6,7 @@
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
         <meta charset="utf-8" />
-
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <link rel="stylesheet" type="text/css" href="css/w3.css">
         <title>perforosven  - certificaciones</title>
@@ -15,64 +15,23 @@
         <div class="app" id="deviceready">
           <div class="Header">
             <div class="br-header">
-              <div class="btn-menu">
+              <div class="btn-menu" id="Menu">
                 <i class="icon-menu"></i>
               </div>
               <div class="load-con">
-                <div class="txt-tit">
+                <div class="txt-tit" id="Titulo">
                   Certificaciones
                 </div>
               </div>
-              <div class="btn-reload">
+              <div class="btn-reload" id="Reload">
                 <i class="icon-reload"></i>
               </div>
-
-
             </div>
           </div>
           <div  class="Content">
-           <!--<table class="w3-table w3-striped" >
-           </table>-->
            <table class="w3-table w3-striped" id="Content">
 
           	</table>
-            <!--<table class="w3-table w3-striped">
-        						  <tr class="list-b">
-        							<td>
-        							<div class="txt-mat">Papel De Lija No. 80 Papel De Lija No. 80</div>
-        							<div class="st-m">21</div>
-        							<div class="ce-fech">0152488915</div>
-        							<td>
-        						  	</tr>
-        							<tr class="list-b">
-        							<td>
-        							<div class="txt-mat">Papel De Lija No. 80</div>
-        							<div class="st-m">21</div>
-        							<div class="ce-fech">0152488915</div>
-        							<td>
-        						    </tr>
-        							<tr class="list-b">
-        							<td>
-        							<div class="txt-mat">Papel De Lija No. 80</div>
-        							<div class="st-m">21</div>
-        							<div class="ce-fech">0152488915</div>
-        							<td>
-        						  </tr>
-        			</table>-->
-            <!--  <table class="w3-table w3-striped">
-          						  <tr class="list-b">
-          							<td>
-          							<div>Informe de inspección</div>
-          							<div class="c-fech">prv1 - 10/02/2019 - 10/02/2020</div>
-          							<td>
-          						  </tr>
-          							<tr class="list-b">
-          							<td>
-          							<div>Informe de inspección</div>
-          							<div class="c-fech">prv1 - 10/02/2019 - 10/02/2020</div>
-          							<td>
-          						  </tr>
-          						  </table>-->
           </div>
           <div class="Footer">
               <div class="btn-search">
@@ -80,9 +39,9 @@
               </div>
           </div>
         </div>
-        <div class="menu-left">
+        <div class="menu-left" id="M-left">
           <div class="cd-header">
-            <div class="btn-back">
+            <div class="btn-back" id="Back">
               <i class="icon-back"></i>
             </div>
             <div class="ico-perforosven">
@@ -90,9 +49,36 @@
             <div class="txt-perforosven">
               Operaciones
             </div>
+            <ul>
+              <li class="lista-cl" id="Certifica" style="margin-top: 25px;">
+                <i class="icon icon-vin"></i>
+                <div class="txt-fl">
+                  Certificaciones
+                </div>
+              </li>
+              <li class="lista-cl" id="Inventario">
+                <i class="icon icon-vin"></i>
+                <div class="txt-fl">
+                  Inventario
+                </div>
+              </li>
+              <li class="lista-cl"><a target="_blank" href="http://wa.me/584262026075">
+                <i class="icon icon-ws"></i>
+                <div class="txt-fl">
+                  Soporte whatsapp
+                </div></a>
+              </li>
+            </ul>
           </div>
         </div>
+        <div id="Status">
+
+        </div>
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
+		<script type="text/javascript">
+					app.initialize();
+        </script>
     </body>
 </html>
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/index.js"></script>

@@ -7,7 +7,9 @@
   height: 60px;
   background-color: #FFDF18;
 }
-
+.primarios{
+  background-color: #FFDF18;
+}
 .btn-search{
     z-index: 10;
     position: fixed;
@@ -17,6 +19,7 @@
     right: 2.5%;
     border-radius: 50%;
     background-color: #FFDF18;
+    display: none;
 }
 .icon-search{
   display: block;
@@ -158,7 +161,20 @@
 
 
 /* Certificaciones */
+tr:nth-child(odd) {
 
+    background-color:#f2f2f2;
+
+}
+
+tr:nth-child(even) {
+
+    background-color:#fbfbfb;
+
+}
+.list-b{
+  border-bottom: 1px solid #eee;
+}
 .list-b:hover{
 	cursor: pointer;
 }
@@ -184,4 +200,123 @@
 }
 .ce-fech{
 	font-size: 65%;
+}
+
+/* Menu */
+ul{
+  padding: 0px;
+  margin: 0px;
+}
+li{
+	list-style: none;
+}
+li.lista-cl{
+	display: block;
+	width: 100%;
+	height: 40px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+li:active{
+  background-color: rgba(255, 223, 24, 0.5);
+  cursor: pointer;
+}
+.icon{
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin-top: 10px;
+  margin-left: 5%;
+  float: left;
+}
+.icon-vin{
+  background:url('../img/right-chevron.png');
+  background-size: 20px 20px;
+}
+.icon-ws{
+  background:url('../img/whatsapp.png');
+  background-size: 20px 20px;
+}
+.txt-fl{
+  float: left;
+  display: block;
+  padding-top: 7px;
+  padding-left: 2.5%
+}
+a{
+  text-decoration: none;
+  color: #000;
+}
+.lista-inf{
+  padding: 15px;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+/* Estatus */
+.cd-status-pr{
+  z-index: 20;
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+.flex-center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.position-ref {
+    position: relative;
+}
+.full-height {
+    height: 80vh;
+}
+.cd-status{
+  position: fixed;
+  width: 100%;
+  height: 50px;
+  bottom: 0px;
+  left: 0px;
+}
+.icon-ind{
+  width: 30px;
+  height: 30px;
+  background: url('../img/alertas.png');
+  background-size: 30px 30px;
+}
+.icon-pfrs{
+  display: block;
+  margin: auto;
+  width: 128px;
+  height: 128px;
+  background: url('../img/icologo.ico');
+  background-size: 128px 128px;
+}
+.txt-msj{
+  display: block;
+  float: left;
+  margin-top: 13px;
+  margin-left: 2.5%;
+  font-weight: bold;
+  color: white;
+}
+.txt-msj-p{
+  display: block;
+  margin: auto;
+  width: 100%;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-top: -170px;
+}
+.txt-msj-p2{
+  display: block;
+  margin: auto;
+  width: 100%;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
 }

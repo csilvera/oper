@@ -1,17 +1,17 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="tienda.simple.muestra" version="1.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="perforosven.operaciones.lista" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <feature name="Device">
         <param name="browser-package" value="Device" />
     </feature>
     <feature name="BackgroundMode">
         <param name="browser-package" value="BackgroundMode" />
     </feature>
-    <name>digital - panel</name>
+    <name>Perforosven Operaciones</name>
     <description>
        Control de datos
     </description>
-    <author email="desarrollosimple@gmail.com" href="https://didigitales.live/">
-        Didigitales Team
+    <author email="ing.cesarsilvera@gmail.com" href="https://didigitales.tigersoftware.net.ve">
+        Gerencia de operaciones
     </author>
     <icon src="icon.png" />
     <content src="index.html" />
@@ -25,7 +25,7 @@
     <preference name="KeepRunning" value="true" />
     <preference name="BackgroundColor" value="#FCFCFC" />
     <preference name="SplashScreenBackgroundColor" value="#FCFCFC" />
-    <preference name="StatusBarBackgroundColor" value="#3498DB" />
+    <preference name="StatusBarBackgroundColor" value="#FFDF18" />
     <preference name="HideKeyboardFormAccessoryBar" value="true" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="21" />

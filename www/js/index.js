@@ -5,19 +5,20 @@ var m = 1; var b = 1;
 function welcome(){
   if (navigator.onLine) {
   scroll();
-  var t = setTimeout(function(){
+  
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       cr = JSON.parse(this.responseText);
-  	  //console.log(cr);
+  	  console.log(cr);
       localStorage.setItem("rcertifica", cr);
   	  let cer = $("#Content");
       $("#Content").empty();
       if(cr == 0){
               cer.html();
               cer.append(`<div class="lista-inf">No hay resultados</div>`)
-      }else{
+      }
+	  else{
               cer.html();
               cr.forEach(cert => {
                   cer.append(`
@@ -36,11 +37,13 @@ function welcome(){
   };
   xmlhttp.open("GET", "https://didigitales.tigersoftware.net.ve/certifica-lista", true);
   xmlhttp.send();
-},2000);
+
   }
   else{
     scroll();
+	 
     cr = localStorage.getItem('rcertifica');
+	 console.log('cargado sin conexion:'+cr);
     $('#Status').empty();
     $('#Status').append(`
     <div class="cd-status bg-primary">
@@ -54,7 +57,8 @@ function welcome(){
     if(cr == 0){
             cer.html();
             cer.append(`<div class="lista-inf">No hay resultados</div>`)
-    }else{
+    }
+	else{
             cer.html();
             cr.forEach(cert => {
                 cer.append(`
@@ -71,7 +75,8 @@ function welcome(){
           }
   }
 }
-$('#Menu').on('click', function(){
+$('#Menu').on('click', function(e){
+	e.preventDefault();
   navigator.vibrate(500);
   if(m == 1){
       m = 0;
@@ -82,7 +87,8 @@ $('#Menu').on('click', function(){
       $('#M-left').animate({left:'-80%'},'show');
   }
 });
-$('#Back').on('click', function(){
+$('#Back').on('click', function(e){
+	e.preventDefault();
   navigator.vibrate(500);
   if(b == 1){
       b = 0;
@@ -93,7 +99,8 @@ $('#Back').on('click', function(){
       $('#M-left').animate({left:'0%'},'show');
   }
 });
-$('#Reload').on('click', function(){
+$('#Reload').on('click', function(e){
+  e.preventDefault();
   navigator.vibrate(500);
     var v = localStorage.getItem('reload');
     if (v == 'certifica') {
@@ -285,7 +292,25 @@ function inventario(){
           }
   }
 }
+function checkConnection() {
+    var networkState = navigator.connection.type;
+    var type = undefined;
+    var states = {};
+    states[Connection.UNKNOWN]  = 'Unknown connection';
+    states[Connection.ETHERNET] = 'Ethernet connection';
+    states[Connection.WIFI]     = 'WiFi connection';
+    states[Connection.CELL_2G]  = 'Cell 2G connection';
+    states[Connection.CELL_3G]  = 'Cell 3G connection';
+    states[Connection.CELL_4G]  = 'Cell 4G connection';
+    states[Connection.CELL]     = 'Cell generic connection';
+    states[Connection.NONE]     = 'No network connection';
 
+    console.log('Connection type: ' + states[networkState]);
+    
+     type = states[networkState];
+    
+    return type;
+}
 var app = {
     initialize: function() {
        this.bindEvents();
@@ -296,19 +321,22 @@ var app = {
         document.addEventListener('deviceready', this.onDeviceReady, false);
         document.addEventListener("backbutton", onBackKeyDown, false);
         document.addEventListener("menubutton", onMenuKeyDown, false);
+		welcome();
     },
     onDeviceReady: function(){
-        checkConnection();
-        welcome();
+		checkConnection();
+        
 
     }
 };
-app.initialize();
+//app.initialize();
 function onBackKeyDown() {
-  var r = confirm("Desea salir de la aplicación");
-  if (r == true) {
-    navigator.app.exitApp();
-  }
+  navigator.notification.confirm(
+    'Desea salir de la aplicacion!', // message
+     onConfirm,            // callback to invoke with index of button pressed
+    'Game Over',           // title
+    ['salir','Cancelar']     // buttonLabels
+);
 }
 function onMenuKeyDown() {
   m = 0;
@@ -317,14 +345,15 @@ function onMenuKeyDown() {
 
 function scroll(){
     var x = '';
-    var px = 600;
+    var px = 400;
     var d = 1;
     var h = 30;
     var no = 1;
     $(window).scroll(function(event){
         var posi = $(window).scrollTop();
+		console.log(posi);
         if(posi >= px){
-            px = px + 600;
+            px = px + 400;
             var desde = h * d;
             d = d + 1;
             var xmlhttp = new XMLHttpRequest()
@@ -392,12 +421,13 @@ function scrollinv(){
                         cer.html();
                         cr.forEach(cert => {
                             cer.append(`
-                          					<tr class="list-b">
-                          						<td>
-                          							<div>${cert.descripcion}</div>
-                          							<div class="c-fech">${cert.taladro} - ${cert.desde} - ${cert.hasta}</div>
-                          							<td>
-                          					</tr>
+                          				<tr class="list-b">
+            							<td>
+            							<div class="txt-mat">${cert.descripcion}</div>
+            							<div class="st-m">${cert.stock}</div>
+            							<div class="ce-fech">${cert.codigo}</div>
+            							<td>
+            						  	</tr>
 
                           				`);
                         });
